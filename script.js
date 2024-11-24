@@ -4,18 +4,19 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
-let shuffledQuestions, currentQuestionIndex
+let shuffledQuestions, currentQuestionIndex;
 
-startButton.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame);
+
 nextButton.addEventListener('click', () => {
-  currentQuestionIndex++
+  currentQuestionIndex++;
   setNextQuestion()
 })
 
 function startGame() {
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
-  currentQuestionIndex = 0
+  currentQuestionIndex = 0                      
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
 }
@@ -52,6 +53,7 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
   Array.from(answerButtonsElement.children).forEach(button => {
+    console.log(button.dataset.correct)
     setStatusClass(button, button.dataset.correct)
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
@@ -78,35 +80,37 @@ function clearStatusClass(element) {
 
 const questions = [
   {
-    question: 'What is 2 + 2?',
+    question: 'What is the term for a function that calls itself?',
     answers: [
-      { text: '4', correct: true },
-      { text: '22', correct: false }
+      { text: 'Recursion', correct: true },
+      { text: 'Overloading', correct: false }
     ]
   },
   {
-    question: 'Who is the best YouTuber?',
+    question: 'What data structure uses LIFO (Last In, First Out)?',
     answers: [
-      { text: 'Web Dev Simplified', correct: true },
-      { text: 'Traversy Media', correct: true },
-      { text: 'Dev Ed', correct: true },
-      { text: 'Fun Fun Function', correct: true }
+      { text: 'tree', correct: false },
+      { text: 'linkedlist', correct: false },
+      { text: 'Stack', correct: true },
+      { text: 'Queue', correct: false }
     ]
   },
   {
-    question: 'Is web development fun?',
+    question: 'What is the term for a function that calls itself?',
     answers: [
-      { text: 'Kinda', correct: false },
-      { text: 'YES!!!', correct: true },
-      { text: 'Um no', correct: false },
-      { text: 'IDK', correct: false }
+      { text: 'Compilation error', correct: false },
+      { text: 'Logical error', correct: false },
+      { text: 'Runtime error', correct: true },
+      { text: 'None', correct: false }
     ]
   },
   {
-    question: 'What is 4 * 2?',
+    question: 'What is the time complexity of accessing an element in an array by index?',
     answers: [
-      { text: '6', correct: false },
-      { text: '8', correct: true }
+      { text: 'O(1)', correct: true },
+      { text: 'O(n)', correct: false },
+      { text: 'O(log n)', correct: false },
+      { text: 'O(n^2)', correct: false },
     ]
   }
 ]
